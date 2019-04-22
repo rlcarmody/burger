@@ -1,0 +1,31 @@
+<div class="container center-align">
+
+  <h1>The Burger Place</h1>
+  <div class="row">
+    <div class="col s6">
+      <h2>Burgers to Eat</h2>
+      <ul>
+        {{#each burgers}}
+        {{#unless devoured}}
+        <li data-id="{{id}}">
+          {{burger_name}}
+          <button id="devour">Eat me</button>
+        </li>
+        {{/unless}}
+        {{/each}}
+      </ul>
+    </div>
+    <div class="col s6">
+      <h2>Devoured Burgers</h2>
+      <ul>
+        {{#each burgers}}
+        {{#if devoured}}
+        <li data-id="{{id}}">
+          {{burger_name}}
+        </li>
+        {{/if}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>
