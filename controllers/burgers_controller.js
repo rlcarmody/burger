@@ -1,17 +1,32 @@
 const express = require('express');
 const burger = require('../models/burger');
+const ingredients = require('../models/ingredient')
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
+  const hbObj = {};
   burger.view(data => {
-    res.render('index', {burgers: data});
+    hbObj.burgers = data;
+    ingredients.view(data => {
+      hbObj.ingredients = data;
+      res.render('index', hbObj);
+    })
+  })
+})
+
+router.get('/api/burger/:id', (req, res) => {
+  burger.ingredients(parseInt(req.params.id), data => {
+    res.json(data);
   })
 })
 
 router.post('/api/burger', (req, res) => {
   burger.create(req.body.name, (data) => {
-    res.json(data.insertId);
+    const burgerId = data.insertId;
+    burger.setIngredients(burgerId, req.body.ingredients, data => {
+      res.json(data);
+    })
   })
 })
 

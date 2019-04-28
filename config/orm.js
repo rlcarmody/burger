@@ -27,6 +27,24 @@ const orm = {
         callback(data);
       }
     )
+  },
+  viewJoined: function (table1, table2, conditions, callback) {
+    connection.query(
+      'SELECT * FROM ??, ?? WHERE ? AND ?? = ??',
+      [table1,table2, ...conditions], (err, data) => {
+        if (err) callback(err);
+        else { callback(data) };
+      }
+    )
+  },
+  insertMultiple: function (tableName, columns, values, callback) {
+    connection.query(
+      'INSERT INTO ?? (??) VALUES ?',
+      [tableName, columns, values], (err, data) => {
+        if (err) throw err;
+        callback(data);
+      }
+    )
   }
 }
 

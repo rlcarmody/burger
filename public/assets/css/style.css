@@ -20,6 +20,11 @@ li.devoured {
   border-bottom: 1px solid #000;
   box-shadow: 0 1px 0 0 #000;
 }
+
+.material-icons {
+  cursor: help;
+}
+
 @media screen and (max-width: 600px) {
   h1 {
     font-size: 3em;
