@@ -18,9 +18,10 @@ CREATE TABLE ingredients (
 CREATE TABLE burger_ingredients (
     id INT auto_increment NOT NULL,
     burgerID INT NOT NULL,
-    ingredientID INT NOT NULL
-    FOREIGN KEY (burderID)
+    ingredientID INT NOT NULL,
+    FOREIGN KEY (burgerID)
         REFERENCES burgers(id),
     FOREIGN KEY (ingredientID)
-        REFERENCES ingredients(id)
+        REFERENCES ingredients(id),
+	PRIMARY KEY(id)
     )
